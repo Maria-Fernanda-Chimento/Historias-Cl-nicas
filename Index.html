@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historia Clínica Psiquiátrica</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:#0f1117;color:#e2e8f8;font-family:'DM Sans','Segoe UI',sans-serif;}
+    input,textarea,select{background:#181c27;border:1px solid #2a3050;border-radius:8px;color:#e2e8f8;padding:9px 13px;font-size:14px;width:100%;outline:none;font-family:inherit;}
+    input:focus,textarea:focus,select:focus{border-color:#4f8ef7;box-shadow:0 0 0 3px #4f8ef722;}
+    textarea{resize:vertical;line-height:1.6;}
+    button{font-family:inherit;cursor:pointer;}
+    ::-webkit-scrollbar{width:6px;height:6px;}
+    ::-webkit-scrollbar-track{background:#0f1117;}
+    ::-webkit-scrollbar-thumb{background:#2a3050;border-radius:3px;}
+    @media print{
+      body{background:white!important;color:black!important;font-size:11px!important;}
+      *{color:black!important;background:white!important;border-color:#aaa!important;box-shadow:none!important;}
+      button{display:none!important;}
+      input,textarea,select{border:1px solid #999!important;}
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+const C = {
+  bg:"#0f1117",surface:"#181c27",card:"#1e2335",border:"#2a3050",
+  accent:"#4f8ef7",accentSoft:"#1a2d5a",green:"#34d399",greenSoft:"#0d3327",
+  amber:"#fbbf24",amberSoft:"#3a2a00",red:"#f87171",
+  muted:"#6b7a99",text:"#e2e8f8",textSoft:"#9aa5c4",purple:"#a78bfa",purpleSoft:"#2d1f5a",
+};
+const iS={background:C.surface,border:`1px solid ${C.border}`,borderRadius:8,color:C.text,padding:"9px 13px",fontSize:14,width:"100%",outline:"none",fontFamily:"inherit",boxSizing:"border-box"};
+const lS={fontSize:11,fontWeight:700,letterSpacing:"0.08em",color:C.muted,textTransform:"uppercase",marginBottom:4,display:"block"};
+function Field({label,children}){return <div style={{marginBottom:14}}><label style={lS}>{label}</label>{children}</div>;}
+function Input({value,onChange,placeholder,type="text"}){return <input type={type} value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder} style={iS}/>;}
+function Textarea({value,onChange,placeholder,rows=3}){return <textarea value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder} rows={rows} style={{...iS,resize:"vertical",lineHeight:1.6}}/>;}
+function Select({value,onChange,options}){return <select value={value} onChange={e=>onChange(e.target.value)} style={{...iS,cursor:"pointer"}}>{options.map(o=><option key={o.value||o} value={o.value||o}>{o.label||o}</option>)}</select>;}
+function CheckGroup({items,selected,onChange}){const toggle=item=>onChange(selected.includes(item)?selected.filter(x=>x!==item):[...selected,item]);return <div style={{display:"flex",flexWrap:"wrap",gap:8}}>{items.map(item=>{const a=selected.includes(item);return <button key={item} onClick={()=>toggle(item)} style={{padding:"5px 12px",borderRadius:20,border:`1px solid ${a?C.accent:C.border}`,background:a?C.accentSoft:"transparent",color:a?C.accent:C.textSoft,fontSize:12,cursor:"pointer",fontFamily:"inherit"}}>{item}</button>;})}</div>;}
+function SectionHeader({title,icon}){return <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:20,paddingBottom:12,borderBottom:`1px solid ${C.border}`}}><span style={{fontSize:18}}>{icon}</span><h2 style={{margin:0,fontSize:15,fontWeight:700,color:C.text}}>{title}</h2></div>;}
+function Card({children,style={}}){return <div style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:12,padding:"22px 24px",marginBottom:16,...style}}>{children}</div>;}
+function Btn({children,onClick,color=C.accent,outline=false,small=false}){return <button onClick={onClick} style={{background:outline?"transparent":color,border:`1px solid ${color}`,color:outline?color:"#fff",borderRadius:8,padding:small?"6px 14px":"10px 20px",fontSize:small?12:14,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>{children}</button>;}
+const SEMIO={conciencia:["Lúcido/a","Obnubilado/a","Confuso/a","Estuporoso/a","Comatoso/a"],orientacion:["Orientado/a en tiempo","Orientado/a en espacio","Orientado/a en persona","Desorientado/a en tiempo","Desorientado/a en espacio","Desorientado/a en persona"],atencion:["Normoprosexia","Hipoprosexia","Hiperprosexia","Distraibilidad aumentada","Concentración disminuida"],memoria:["Normemnesia","Hipermnesia","Hipomnesia anterógrada","Hipomnesia retrógrada","Amnesia anterógrada","Amnesia retrógrada","Confabulación","Paramnesias"],pensamiento_curso:["Pensamiento fluido","Taquipsiquia","Bradipsiquia","Fuga de ideas","Pensamiento inhibido","Bloqueo","Pensamiento prolijo","Circunstancialidad","Tangencialidad","Pensamiento disgregado","Perseveración","Verbigeración"],pensamiento_contenido:["Sin alteraciones","Ideas delirantes","Ideas sobrevaloradas","Ideas obsesivas","Ideas fóbicas","Ideas de perjuicio","Ideas de referencia","Ideas de grandeza","Ideas nihilistas","Ideas hipocondríacas","Ideas de culpa","Ideación suicida sin plan","Ideación suicida con plan","Ideación homicida"],percepcion:["Sin alteraciones","Alucinaciones auditivas","Alucinaciones visuales","Alucinaciones táctiles","Alucinaciones olfativas","Alucinaciones gustativas","Pseudoalucinaciones","Ilusiones","Despersonalización","Desrealización"],afecto:["Eutimia","Depresión","Tristeza","Euforia","Disforia","Ansiedad","Aplanamiento afectivo","Embotamiento","Labilidad emocional","Irritabilidad","Anhedonia","Alexitimia","Ambivalencia"],conducta:["Sin alteraciones","Agitación psicomotriz","Inhibición psicomotriz","Estupor","Manierismo","Estereotipias","Compulsiones","Impulsividad","Conducta suicida activa","Conducta heteroagresiva","Negativismo","Comportamiento desorganizado"],lenguaje:["Normal","Logorreico","Mutismo","Bradilalia","Taquilalia","Musitación","Ecolalia","Palilalia","Neologismos","Ensalada de palabras","Disartria"],juicio:["Conservado","Parcialmente conservado","Alterado"],critica:["Buena insight","Insight parcial","Sin insight","Negación de enfermedad"],sueno:["Normal","Insomnio de conciliación","Insomnio de mantenimiento","Despertar precoz","Hipersomnia","Pesadillas","Terrores nocturnos"],apetito:["Normal","Hiporexia","Anorexia","Hiperfagia","Bulimia"]};
+const PSICOFARMACOS={"Antipsicóticos":["Risperidona","Olanzapina","Quetiapina","Aripiprazol","Clozapina","Haloperidol","Ziprasidona","Paliperidona","Lurasidona","Amisulpride"],"Antidepresivos":["Fluoxetina","Sertralina","Escitalopram","Paroxetina","Venlafaxina","Duloxetina","Mirtazapina","Amitriptilina","Clomipramina","Bupropión","Vortioxetina"],"Ansiolíticos / BZD":["Alprazolam","Clonazepam","Lorazepam","Diazepam","Bromazepam","Clorazepato","Midazolam"],"Estabilizadores":["Litio (carbonato)","Valproato","Carbamazepina","Lamotrigina","Topiramato","Gabapentina"],"Hipnóticos":["Zolpidem","Zopiclona","Melatonina"],"Otros":["Biperideno","Prometazina","Propranolol","Naltrexona","Disulfiram"]};
+const VIA_OPT=["Oral","IM","EV","Sublingual","Transdérmica"];
+const FREC_OPT=["1 vez/día","2 veces/día","3 veces/día","Cada 8 hs","Cada 12 hs","Según necesidad","Nocturna"];
+const PHQ9_ITEMS=["1. Poco interés o placer","2. Sentirse triste o sin esperanza","3. Problemas para dormir","4. Cansancio o poca energía","5. Poco apetito o comer en exceso","6. Sentirse mal consigo mismo/a","7. Dificultad para concentrarse","8. Moverse muy despacio o agitación","9. Pensamientos de hacerse daño"];
+const GAD7_ITEMS=["1. Sentirse nervioso/a o al límite","2. No poder dejar de preocuparse","3. Preocuparse demasiado","4. Dificultad para relajarse","5. Estar muy inquieto/a","6. Irritarse fácilmente","7. Sentir miedo a que algo terrible pase"];
+const LIKERT=["0–Nunca","1–Algunos días","2–Más de la mitad","3–Casi todos los días"];
+const CGI_SEV=["","1–Normal","2–Muy leve","3–Levemente enfermo","4–Moderado","5–Marcadamente enfermo","6–Grave","7–Entre los más graves"];
+const CGI_IMP=["","1–Muy mejorado","2–Mejorado","3–Mín. mejorado","4–Sin cambios","5–Mín. empeorado","6–Empeorado","7–Muy empeorado"];
+function emptyMed(){return{grupo:"",nombre:"",dosis:"",via:"Oral",frecuencia:"1 vez/día",indicacion:"",activo:true};}
+function emptyEsc(){return{phq9:Array(9).fill(null),gad7:Array(7).fill(null),cgi_s:"",cgi_i:"",notas:""};}
+function emptyConsulta(n){return{id:Date.now()+n,numero:n,fecha:new Date().toISOString().split("T")[0],motivoConsulta:"",evolucion:"",semio:{conciencia:[],orientacion:[],atencion:[],memoria:[],pensamiento_curso:[],pensamiento_contenido:[],percepcion:[],afecto:[],cond
