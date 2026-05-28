@@ -1,1 +1,1 @@
-# Historias-Cl-nicas
+# Historias-Clínicas
