@@ -1,60 +1,179 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Historia Clínica Psiquiátrica</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:#0f1117;color:#e2e8f8;font-family:'DM Sans','Segoe UI',sans-serif;}
-    input,textarea,select{background:#181c27;border:1px solid #2a3050;border-radius:8px;color:#e2e8f8;padding:9px 13px;font-size:14px;width:100%;outline:none;font-family:inherit;}
-    input:focus,textarea:focus,select:focus{border-color:#4f8ef7;box-shadow:0 0 0 3px #4f8ef722;}
-    textarea{resize:vertical;line-height:1.6;}
-    button{font-family:inherit;cursor:pointer;}
-    ::-webkit-scrollbar{width:6px;height:6px;}
-    ::-webkit-scrollbar-track{background:#0f1117;}
-    ::-webkit-scrollbar-thumb{background:#2a3050;border-radius:3px;}
-    @media print{
-      body{background:white!important;color:black!important;font-size:11px!important;}
-      *{color:black!important;background:white!important;border-color:#aaa!important;box-shadow:none!important;}
-      button{display:none!important;}
-      input,textarea,select{border:1px solid #999!important;}
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Historia Clínica Psiquiátrica</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0f1117;color:#e2e8f8;font-family:'Segoe UI',sans-serif;font-size:14px;}
+.hdr{background:#181c27;border-bottom:1px solid #2a3050;padding:0 16px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.hdr-title{font-weight:700;font-size:15px;}
+.hdr-sub{font-size:11px;color:#6b7a99;}
+.tabs{background:#181c27;border-bottom:1px solid #2a3050;display:flex;overflow-x:auto;}
+.tab{padding:12px 14px;background:transparent;border:none;border-bottom:2px solid transparent;color:#9aa5c4;font-size:12px;cursor:pointer;white-space:nowrap;}
+.tab.active{border-bottom-color:#4f8ef7;color:#4f8ef7;font-weight:700;}
+.content{max-width:900px;margin:0 auto;padding:20px 16px;}
+.card{background:#1e2335;border:1px solid #2a3050;border-radius:12px;padding:20px;margin-bottom:16px;}
+.sec-hdr{display:flex;align-items:center;gap:8px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid #2a3050;font-size:15px;font-weight:700;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:11px;font-weight:700;color:#6b7a99;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+input,textarea,select{background:#181c27;border:1px solid #2a3050;border-radius:8px;color:#e2e8f8;padding:9px 12px;font-size:13px;width:100%;font-family:inherit;outline:none;}
+input:focus,textarea:focus,select:focus{border-color:#4f8ef7;}
+textarea{resize:vertical;line-height:1.6;}
+.btn{border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #4f8ef7;background:#4f8ef7;color:#fff;}
+.btn.outline{background:transparent;color:#4f8ef7;}
+.btn.sm{padding:5px 12px;font-size:12px;}
+.btn.red{border-color:#f87171;background:#f87171;}
+.btn.red.outline{background:transparent;color:#f87171;}
+.btn.amber{border-color:#fbbf24;}
+.btn.amber.outline{background:transparent;color:#fbbf24;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{padding:5px 12px;border-radius:20px;border:1px solid #2a3050;background:transparent;color:#9aa5c4;font-size:12px;cursor:pointer;}
+.chip.on{border-color:#4f8ef7;background:#1a2d5a;color:#4f8ef7;}
+.med-card{border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #2a3050;background:#181c27;}
+.med-card.active{background:#0d3327;border-color:#34d39944;}
+.table{width:100%;border-collapse:collapse;font-size:13px;}
+.table th{text-align:left;padding:6px 8px;border-bottom:1px solid #2a3050;font-size:10px;font-weight:700;text-transform:uppercase;color:#6b7a99;}
+.table td{padding:7px 8px;}
+.score-bar{margin-top:8px;}
+.score-bar .nums{display:flex;justify-content:space-between;margin-bottom:4px;font-size:13px;font-weight:700;}
+.bar-bg{height:8px;background:#2a3050;border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;}
+.alert{padding:14px;border-radius:10px;font-size:13px;line-height:1.7;margin-bottom:16px;}
+.alert.amber{background:#3a2a00;color:#fbbf24;}
+.alert.green{background:#0d3327;color:#34d399;}
+.alert.blue{background:#1a2d5a;color:#4f8ef7;}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:10px;border:1px solid #2a3050;margin-bottom:10px;cursor:pointer;}
+.check-row.on{background:#0d3327;border-color:#34d39944;}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid #2a3050;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.check-box.on{background:#34d399;border-color:#34d399;}
+.sig-line{height:70px;border-bottom:2px solid #2a3050;margin-bottom:8px;}
+.subtabs{display:flex;gap:8px;margin-bottom:14px;}
+.subtab{padding:7px 16px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid #2a3050;background:#181c27;color:#9aa5c4;}
+.subtab.active{border-color:#a78bfa;background:#2d1f5a;color:#a78bfa;font-weight:700;}
+.consul-btn{padding:7px 14px;border-radius:8px;border:1px solid #2a3050;background:#181c27;color:#9aa5c4;font-size:12px;cursor:pointer;}
+.consul-btn.active{border-color:#4f8ef7;background:#1a2d5a;color:#4f8ef7;font-weight:700;}
+.sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px;}
+.sum-box{background:#181c27;border-radius:10px;padding:14px;text-align:center;}
+.sum-box .lbl{font-size:11px;color:#6b7a99;margin-bottom:4px;}
+.sum-box .val{font-size:24px;font-weight:800;}
+.sum-box .max{font-size:10px;color:#6b7a99;}
+@media print{button{display:none!important;}body{background:white!important;color:black!important;}*{color:black!important;background:white!important;border-color:#aaa!important;}}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState } = React;
-const C = {
-  bg:"#0f1117",surface:"#181c27",card:"#1e2335",border:"#2a3050",
-  accent:"#4f8ef7",accentSoft:"#1a2d5a",green:"#34d399",greenSoft:"#0d3327",
-  amber:"#fbbf24",amberSoft:"#3a2a00",red:"#f87171",
-  muted:"#6b7a99",text:"#e2e8f8",textSoft:"#9aa5c4",purple:"#a78bfa",purpleSoft:"#2d1f5a",
-};
-const iS={background:C.surface,border:`1px solid ${C.border}`,borderRadius:8,color:C.text,padding:"9px 13px",fontSize:14,width:"100%",outline:"none",fontFamily:"inherit",boxSizing:"border-box"};
-const lS={fontSize:11,fontWeight:700,letterSpacing:"0.08em",color:C.muted,textTransform:"uppercase",marginBottom:4,display:"block"};
-function Field({label,children}){return <div style={{marginBottom:14}}><label style={lS}>{label}</label>{children}</div>;}
-function Input({value,onChange,placeholder,type="text"}){return <input type={type} value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder} style={iS}/>;}
-function Textarea({value,onChange,placeholder,rows=3}){return <textarea value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder} rows={rows} style={{...iS,resize:"vertical",lineHeight:1.6}}/>;}
-function Select({value,onChange,options}){return <select value={value} onChange={e=>onChange(e.target.value)} style={{...iS,cursor:"pointer"}}>{options.map(o=><option key={o.value||o} value={o.value||o}>{o.label||o}</option>)}</select>;}
-function CheckGroup({items,selected,onChange}){const toggle=item=>onChange(selected.includes(item)?selected.filter(x=>x!==item):[...selected,item]);return <div style={{display:"flex",flexWrap:"wrap",gap:8}}>{items.map(item=>{const a=selected.includes(item);return <button key={item} onClick={()=>toggle(item)} style={{padding:"5px 12px",borderRadius:20,border:`1px solid ${a?C.accent:C.border}`,background:a?C.accentSoft:"transparent",color:a?C.accent:C.textSoft,fontSize:12,cursor:"pointer",fontFamily:"inherit"}}>{item}</button>;})}</div>;}
-function SectionHeader({title,icon}){return <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:20,paddingBottom:12,borderBottom:`1px solid ${C.border}`}}><span style={{fontSize:18}}>{icon}</span><h2 style={{margin:0,fontSize:15,fontWeight:700,color:C.text}}>{title}</h2></div>;}
-function Card({children,style={}}){return <div style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:12,padding:"22px 24px",marginBottom:16,...style}}>{children}</div>;}
-function Btn({children,onClick,color=C.accent,outline=false,small=false}){return <button onClick={onClick} style={{background:outline?"transparent":color,border:`1px solid ${color}`,color:outline?color:"#fff",borderRadius:8,padding:small?"6px 14px":"10px 20px",fontSize:small?12:14,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>{children}</button>;}
-const SEMIO={conciencia:["Lúcido/a","Obnubilado/a","Confuso/a","Estuporoso/a","Comatoso/a"],orientacion:["Orientado/a en tiempo","Orientado/a en espacio","Orientado/a en persona","Desorientado/a en tiempo","Desorientado/a en espacio","Desorientado/a en persona"],atencion:["Normoprosexia","Hipoprosexia","Hiperprosexia","Distraibilidad aumentada","Concentración disminuida"],memoria:["Normemnesia","Hipermnesia","Hipomnesia anterógrada","Hipomnesia retrógrada","Amnesia anterógrada","Amnesia retrógrada","Confabulación","Paramnesias"],pensamiento_curso:["Pensamiento fluido","Taquipsiquia","Bradipsiquia","Fuga de ideas","Pensamiento inhibido","Bloqueo","Pensamiento prolijo","Circunstancialidad","Tangencialidad","Pensamiento disgregado","Perseveración","Verbigeración"],pensamiento_contenido:["Sin alteraciones","Ideas delirantes","Ideas sobrevaloradas","Ideas obsesivas","Ideas fóbicas","Ideas de perjuicio","Ideas de referencia","Ideas de grandeza","Ideas nihilistas","Ideas hipocondríacas","Ideas de culpa","Ideación suicida sin plan","Ideación suicida con plan","Ideación homicida"],percepcion:["Sin alteraciones","Alucinaciones auditivas","Alucinaciones visuales","Alucinaciones táctiles","Alucinaciones olfativas","Alucinaciones gustativas","Pseudoalucinaciones","Ilusiones","Despersonalización","Desrealización"],afecto:["Eutimia","Depresión","Tristeza","Euforia","Disforia","Ansiedad","Aplanamiento afectivo","Embotamiento","Labilidad emocional","Irritabilidad","Anhedonia","Alexitimia","Ambivalencia"],conducta:["Sin alteraciones","Agitación psicomotriz","Inhibición psicomotriz","Estupor","Manierismo","Estereotipias","Compulsiones","Impulsividad","Conducta suicida activa","Conducta heteroagresiva","Negativismo","Comportamiento desorganizado"],lenguaje:["Normal","Logorreico","Mutismo","Bradilalia","Taquilalia","Musitación","Ecolalia","Palilalia","Neologismos","Ensalada de palabras","Disartria"],juicio:["Conservado","Parcialmente conservado","Alterado"],critica:["Buena insight","Insight parcial","Sin insight","Negación de enfermedad"],sueno:["Normal","Insomnio de conciliación","Insomnio de mantenimiento","Despertar precoz","Hipersomnia","Pesadillas","Terrores nocturnos"],apetito:["Normal","Hiporexia","Anorexia","Hiperfagia","Bulimia"]};
-const PSICOFARMACOS={"Antipsicóticos":["Risperidona","Olanzapina","Quetiapina","Aripiprazol","Clozapina","Haloperidol","Ziprasidona","Paliperidona","Lurasidona","Amisulpride"],"Antidepresivos":["Fluoxetina","Sertralina","Escitalopram","Paroxetina","Venlafaxina","Duloxetina","Mirtazapina","Amitriptilina","Clomipramina","Bupropión","Vortioxetina"],"Ansiolíticos / BZD":["Alprazolam","Clonazepam","Lorazepam","Diazepam","Bromazepam","Clorazepato","Midazolam"],"Estabilizadores":["Litio (carbonato)","Valproato","Carbamazepina","Lamotrigina","Topiramato","Gabapentina"],"Hipnóticos":["Zolpidem","Zopiclona","Melatonina"],"Otros":["Biperideno","Prometazina","Propranolol","Naltrexona","Disulfiram"]};
-const VIA_OPT=["Oral","IM","EV","Sublingual","Transdérmica"];
-const FREC_OPT=["1 vez/día","2 veces/día","3 veces/día","Cada 8 hs","Cada 12 hs","Según necesidad","Nocturna"];
-const PHQ9_ITEMS=["1. Poco interés o placer","2. Sentirse triste o sin esperanza","3. Problemas para dormir","4. Cansancio o poca energía","5. Poco apetito o comer en exceso","6. Sentirse mal consigo mismo/a","7. Dificultad para concentrarse","8. Moverse muy despacio o agitación","9. Pensamientos de hacerse daño"];
-const GAD7_ITEMS=["1. Sentirse nervioso/a o al límite","2. No poder dejar de preocuparse","3. Preocuparse demasiado","4. Dificultad para relajarse","5. Estar muy inquieto/a","6. Irritarse fácilmente","7. Sentir miedo a que algo terrible pase"];
-const LIKERT=["0–Nunca","1–Algunos días","2–Más de la mitad","3–Casi todos los días"];
-const CGI_SEV=["","1–Normal","2–Muy leve","3–Levemente enfermo","4–Moderado","5–Marcadamente enfermo","6–Grave","7–Entre los más graves"];
-const CGI_IMP=["","1–Muy mejorado","2–Mejorado","3–Mín. mejorado","4–Sin cambios","5–Mín. empeorado","6–Empeorado","7–Muy empeorado"];
-function emptyMed(){return{grupo:"",nombre:"",dosis:"",via:"Oral",frecuencia:"1 vez/día",indicacion:"",activo:true};}
-function emptyEsc(){return{phq9:Array(9).fill(null),gad7:Array(7).fill(null),cgi_s:"",cgi_i:"",notas:""};}
-function emptyConsulta(n){return{id:Date.now()+n,numero:n,fecha:new Date().toISOString().split("T")[0],motivoConsulta:"",evolucion:"",semio:{conciencia:[],orientacion:[],atencion:[],memoria:[],pensamiento_curso:[],pensamiento_contenido:[],percepcion:[],afecto:[],cond
+<div class="hdr">
+  <div>
+    <div class="hdr-title">🧠 HC Psiquiátrica</div>
+    <div class="hdr-sub" id="hdr-pac">Nuevo paciente</div>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button class="btn outline sm" onclick="window.print()">📄 PDF</button>
+    <button class="btn sm" onclick="nuevaConsulta()">+ Consulta</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('datos',this)">👤 Paciente</button>
+  <button class="tab" onclick="showTab('medico',this)">🩺 Profesional</button>
+  <button class="tab" onclick="showTab('antecedentes',this)">📋 Antecedentes</button>
+  <button class="tab" onclick="showTab('anamnesis',this)">🧩 Anamnesis</button>
+  <button class="tab" onclick="showTab('fisico',this)">📊 Físico</button>
+  <button class="tab" onclick="showTab('consultas',this)">📝 Consultas <span id="cons-badge" style="background:#4f8ef7;color:#fff;border-radius:10px;font-size:10px;padding:1px 5px;">1</span></button>
+  <button class="tab" onclick="showTab('consentimiento',this)">✍️ Consentimiento</button>
+</div>
+
+<div class="content">
+
+<!-- DATOS -->
+<div id="tab-datos">
+<div class="card">
+  <div class="sec-hdr">👤 Identificación del Paciente</div>
+  <div class="grid2">
+    <div class="field"><label>Apellido</label><input id="apellido" oninput="updHdr()"></div>
+    <div class="field"><label>Nombre/s</label><input id="nombre" oninput="updHdr()"></div>
+    <div class="field"><label>DNI</label><input id="dni"></div>
+    <div class="field"><label>Fecha de Nacimiento</label><input type="date" id="fechaNac"></div>
+    <div class="field"><label>Edad</label><input id="edad"></div>
+    <div class="field"><label>Sexo biológico</label><select id="sexo"><option>-</option><option>Masculino</option><option>Femenino</option><option>Intersexual</option></select></div>
+    <div class="field"><label>Estado civil</label><select id="ecivil"><option>-</option><option>Soltero/a</option><option>Casado/a</option><option>Unión convivencial</option><option>Divorciado/a</option><option>Viudo/a</option></select></div>
+    <div class="field"><label>Instrucción</label><select id="instruccion"><option>-</option><option>Sin instrucción</option><option>Primario</option><option>Secundario</option><option>Universitario</option><option>Posgrado</option></select></div>
+    <div class="field"><label>Ocupación</label><input id="ocupacion"></div>
+    <div class="field"><label>Obra social</label><input id="obrasocial"></div>
+    <div class="field"><label>Teléfono</label><input id="telefono"></div>
+    <div class="field"><label>Email</label><input id="email"></div>
+  </div>
+  <div class="field"><label>Domicilio</label><input id="domicilio"></div>
+  <div class="grid2">
+    <div class="field"><label>Contacto emergencia</label><input id="contacto"></div>
+    <div class="field"><label>Tel. emergencia</label><input id="tel-emergencia"></div>
+  </div>
+</div>
+</div>
+
+<!-- MEDICO -->
+<div id="tab-medico" style="display:none">
+<div class="card">
+  <div class="sec-hdr">🩺 Datos del Profesional</div>
+  <div class="grid2">
+    <div class="field"><label>Nombre</label><input id="med-nombre" placeholder="Dr./Dra."></div>
+    <div class="field"><label>Matrícula (MN/MP)</label><input id="med-matricula"></div>
+    <div class="field"><label>Especialidad</label><input id="med-esp" value="Psiquiatría"></div>
+    <div class="field"><label>Consultorio</label><input id="med-cons"></div>
+    <div class="field"><label>Fecha apertura HC</label><input type="date" id="med-fecha"></div>
+  </div>
+  <div class="alert amber">⚖️ Sujeta a <strong>Ley 26.529</strong> y <strong>Ley 17.132</strong>. Conservar mínimo 10 años desde la última consulta.</div>
+</div>
+</div>
+
+<!-- ANTECEDENTES -->
+<div id="tab-antecedentes" style="display:none">
+<div class="card">
+  <div class="sec-hdr">💬 Motivo de Consulta</div>
+  <div class="field"><label>Motivo (palabras del paciente)</label><textarea id="motivo" rows="3"></textarea></div>
+  <div class="field"><label>Historia de la enfermedad actual</label><textarea id="hea" rows="5"></textarea></div>
+</div>
+<div class="card">
+  <div class="sec-hdr">🧠 Antecedentes Psiquiátricos</div>
+  <div class="field"><label>Diagnósticos y tratamientos previos</label><textarea id="ant-psiq" rows="3"></textarea></div>
+  <div class="field"><label>Internaciones psiquiátricas</label><textarea id="ant-intern" rows="2"></textarea></div>
+  <div class="field"><label>Medicación previa</label><textarea id="ant-med" rows="2"></textarea></div>
+</div>
+<div class="card">
+  <div class="sec-hdr">🏥 Antecedentes Médicos</div>
+  <div class="grid2">
+    <div class="field"><label>Médicos</label><textarea id="ant-medicos" rows="3"></textarea></div>
+    <div class="field"><label>Quirúrgicos</label><textarea id="ant-quir" rows="3"></textarea></div>
+  </div>
+  <div class="field"><label>Alergias</label><input id="alergias" placeholder="NINGUNA CONOCIDA"></div>
+</div>
+<div class="card">
+  <div class="sec-hdr">👨‍👩‍👧 Familiares y Hábitos</div>
+  <div class="field"><label>Psicopatología familiar</label>
+    <div class="chips" id="chips-familia"></div>
+  </div>
+  <div class="field"><label>Detalle</label><textarea id="ant-fam-det" rows="2"></textarea></div>
+  <div class="field"><label>Hábitos y sustancias</label>
+    <div class="chips" id="chips-habitos"></div>
+  </div>
+  <div class="field"><label>Detalle consumo</label><textarea id="sustancias" rows="2"></textarea></div>
+</div>
+</div>
+
+<!-- ANAMNESIS -->
+<div id="tab-anamnesis" style="display:none">
+<div class="card">
+  <div class="sec-hdr">🧩 Anamnesis Biográfica</div>
+  <div class="grid2">
+    <div class="field"><label>Desarrollo psicomotor</label><textarea id="a-desarrollo" rows="3"></textarea></div>
+    <div class="field"><label>Historia familiar</label><textarea id="a-familia" rows="3"></textarea></div>
+    <div class="field"><label>Historia escolar</label><textarea id="a-escolar" rows="3"></textarea></div>
+    <div class="field"><label>Historia laboral</label><textarea id="a-laboral" rows="3"></textarea></div>
+    <div class="field"><label>Historia relacional</label><textarea id="a-relacional" rows="3"></textarea></div>
+    <div class="field"><label>Historia traumática</label><textarea id="a-trauma" rows="3"></textarea></div>
+  </div>
+  <div class=
