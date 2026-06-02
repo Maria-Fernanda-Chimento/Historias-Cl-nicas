@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Historia Clínica Psiquiátrica</title>
+<title>HC Psiquiátrica</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:#0f1117;color:#e2e8f8;font-family:'Segoe UI',sans-serif;font-size:14px;}
@@ -23,14 +23,15 @@ body{background:#0f1117;color:#e2e8f8;font-family:'Segoe UI',sans-serif;font-siz
 input,textarea,select{background:#181c27;border:1px solid #2a3050;border-radius:8px;color:#e2e8f8;padding:9px 12px;font-size:13px;width:100%;font-family:inherit;outline:none;}
 input:focus,textarea:focus,select:focus{border-color:#4f8ef7;}
 textarea{resize:vertical;line-height:1.6;}
-.btn{border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #4f8ef7;background:#4f8ef7;color:#fff;}
+.btn{border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #4f8ef7;background:#4f8ef7;color:#fff;font-family:inherit;}
 .btn.outline{background:transparent;color:#4f8ef7;}
 .btn.sm{padding:5px 12px;font-size:12px;}
+.btn.red{border-color:#f87171;background:#f87171;color:#fff;}
 .btn.red.outline{background:transparent;color:#f87171;border-color:#f87171;}
 .btn.amber.outline{background:transparent;color:#fbbf24;border-color:#fbbf24;}
 .btn.green.outline{background:transparent;color:#34d399;border-color:#34d399;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
-.chip{padding:5px 12px;border-radius:20px;border:1px solid #2a3050;background:transparent;color:#9aa5c4;font-size:12px;cursor:pointer;}
+.chip{padding:5px 12px;border-radius:20px;border:1px solid #2a3050;background:transparent;color:#9aa5c4;font-size:12px;cursor:pointer;font-family:inherit;}
 .chip.on{border-color:#4f8ef7;background:#1a2d5a;color:#4f8ef7;}
 .med-card{border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #2a3050;background:#181c27;}
 .med-card.active{background:#0d3327;border-color:#34d39944;}
@@ -45,39 +46,61 @@ textarea{resize:vertical;line-height:1.6;}
 .check-box{width:22px;height:22px;border-radius:6px;border:2px solid #2a3050;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;}
 .check-box.on{background:#34d399;border-color:#34d399;}
 .sig-line{height:70px;border-bottom:2px solid #2a3050;margin-bottom:8px;}
-.subtabs{display:flex;gap:8px;margin-bottom:14px;}
-.subtab{padding:7px 16px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid #2a3050;background:#181c27;color:#9aa5c4;}
+.subtabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.subtab{padding:7px 16px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid #2a3050;background:#181c27;color:#9aa5c4;font-family:inherit;}
 .subtab.active{border-color:#a78bfa;background:#2d1f5a;color:#a78bfa;font-weight:700;}
-.consul-btn{padding:7px 14px;border-radius:8px;border:1px solid #2a3050;background:#181c27;color:#9aa5c4;font-size:12px;cursor:pointer;margin-bottom:4px;}
+.consul-btn{padding:7px 14px;border-radius:8px;border:1px solid #2a3050;background:#181c27;color:#9aa5c4;font-size:12px;cursor:pointer;margin-bottom:4px;font-family:inherit;}
 .consul-btn.active{border-color:#4f8ef7;background:#1a2d5a;color:#4f8ef7;font-weight:700;}
-.save-indicator{position:fixed;bottom:16px;right:16px;background:#34d399;color:#0d3327;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:700;opacity:0;transition:opacity .3s;z-index:999;}
-.save-indicator.show{opacity:1;}
+.save-ind{position:fixed;bottom:16px;right:16px;background:#34d399;color:#0d3327;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:700;opacity:0;transition:opacity .3s;z-index:999;}
+.save-ind.show{opacity:1;}
+.pac-card{background:#1e2335;border:1px solid #2a3050;border-radius:12px;padding:16px 20px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .2s;}
+.pac-card:hover{border-color:#4f8ef7;}
+.pac-nombre{font-weight:700;font-size:15px;}
+.pac-info{font-size:12px;color:#6b7a99;margin-top:3px;}
+.pac-badge{background:#4f8ef733;color:#4f8ef7;border-radius:8px;font-size:11px;padding:3px 10px;font-weight:700;}
+.search-bar{background:#181c27;border:1px solid #2a3050;border-radius:10px;padding:10px 14px;font-size:14px;width:100%;color:#e2e8f8;outline:none;margin-bottom:16px;font-family:inherit;}
+.search-bar:focus{border-color:#4f8ef7;}
+.empty-state{text-align:center;padding:60px 20px;color:#6b7a99;}
+.score-bar{margin-top:8px;}
+.score-bar .nums{display:flex;justify-content:space-between;margin-bottom:4px;font-size:13px;font-weight:700;}
+.bar-bg{height:8px;background:#2a3050;border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;}
+.sum-box{background:#181c27;border-radius:10px;padding:14px;text-align:center;}
 @media print{button{display:none!important;}body{background:white!important;color:black!important;}*{color:black!important;background:white!important;border-color:#aaa!important;}}
-@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr;}}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr;}.pac-card{flex-direction:column;align-items:flex-start;gap:8px;}}
 </style>
 </head>
 <body>
-<div class="save-indicator" id="save-ind">✓ Guardado</div>
+<div class="save-ind" id="save-ind">✓ Guardado</div>
 <div class="hdr">
   <div>
     <div class="hdr-title">🧠 HC Psiquiátrica</div>
-    <div class="hdr-sub" id="hdr-pac">Nuevo paciente</div>
+    <div class="hdr-sub" id="hdr-sub">Índice de pacientes</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center;">
-    <span id="save-status" style="font-size:11px;color:#34d399;"></span>
-    <button class="btn outline sm" onclick="window.print()">📄 PDF</button>
-    <button class="btn sm" onclick="nuevaConsulta()">+ Consulta</button>
+    <button class="btn sm outline" id="btn-volver" onclick="volverIndice()" style="display:none;">← Volver</button>
+    <button class="btn sm outline" onclick="window.print()" id="btn-pdf" style="display:none;">📄 PDF</button>
+    <button class="btn sm" id="btn-nueva-consulta" onclick="nuevaConsulta()" style="display:none;">+ Consulta</button>
+    <button class="btn sm" id="btn-nuevo-pac" onclick="nuevoPaciente()">+ Paciente</button>
   </div>
 </div>
-<div class="tabs">
+<div class="tabs" id="main-tabs" style="display:none">
   <button class="tab active" onclick="showTab('datos',this)">👤 Paciente</button>
   <button class="tab" onclick="showTab('medico',this)">🩺 Profesional</button>
   <button class="tab" onclick="showTab('antecedentes',this)">📋 Antecedentes</button>
   <button class="tab" onclick="showTab('anamnesis',this)">🧩 Anamnesis</button>
   <button class="tab" onclick="showTab('fisico',this)">📊 Físico</button>
-  <button class="tab" onclick="showTab('consultas',this)">📝 Consultas <span id="cons-badge" style="background:#4f8ef7;color:#fff;border-radius:10px;font-size:10px;padding:1px 5px;">1</span></button>
+  <button class="tab" onclick="showTab('consultas',this)">📝 Consultas <span id="cons-badge" style="background:#4f8ef7;color:#fff;border-radius:10px;font-size:10px;padding:1px 5px;">0</span></button>
   <button class="tab" onclick="showTab('consentimiento',this)">✍️ Consentimiento</button>
 </div>
+<div id="vista-indice" class="content">
+  <div class="card">
+    <div class="sec-hdr">📋 Pacientes registrados</div>
+    <input class="search-bar" id="buscador" placeholder="🔍 Buscar por apellido, nombre o DNI..." oninput="filtrarPacientes()">
+    <div id="lista-pacientes"></div>
+  </div>
+</div>
+<div id="vista-hc" style="display:none">
 <div class="content">
 <div id="tab-datos">
 <div class="card">
@@ -108,12 +131,12 @@ textarea{resize:vertical;line-height:1.6;}
   <div class="sec-hdr">🩺 Datos del Profesional</div>
   <div class="grid2">
     <div class="field"><label>Nombre</label><input id="med-nombre" placeholder="Dr./Dra." oninput="autoSave()"></div>
-    <div class="field"><label>Matrícula (MN/MP)</label><input id="med-matricula" oninput="autoSave()"></div>
+    <div class="field"><label>Matrícula</label><input id="med-matricula" oninput="autoSave()"></div>
     <div class="field"><label>Especialidad</label><input id="med-esp" value="Psiquiatría" oninput="autoSave()"></div>
     <div class="field"><label>Consultorio</label><input id="med-cons" oninput="autoSave()"></div>
     <div class="field"><label>Fecha apertura HC</label><input type="date" id="med-fecha" onchange="autoSave()"></div>
   </div>
-  <div class="alert amber">⚖️ Sujeta a <strong>Ley 26.529</strong> y <strong>Ley 17.132</strong>. Conservar mínimo 10 años desde la última consulta.</div>
+  <div class="alert amber">⚖️ Sujeta a <strong>Ley 26.529</strong> y <strong>Ley 17.132</strong>. Conservar mínimo 10 años.</div>
 </div>
 </div>
 <div id="tab-antecedentes" style="display:none">
@@ -204,401 +227,51 @@ textarea{resize:vertical;line-height:1.6;}
 </div>
 </div>
 </div>
-
+</div>
 <script>
-var consultas=[];
-var curConsulta=0;
-var firmado=false;
-var saveTimer=null;
-
+var pacienteActual=null,consultas=[],curConsulta=0,firmado=false,saveTimer=null;
 var SEMIO={conciencia:["Lúcido/a","Obnubilado/a","Confuso/a","Estuporoso/a","Comatoso/a"],orientacion:["Orient. tiempo","Orient. espacio","Orient. persona","Desorient. tiempo","Desorient. espacio","Desorient. persona"],atencion:["Normoprosexia","Hipoprosexia","Hiperprosexia","Distraibilidad","Concentración disminuida"],memoria:["Normemnesia","Hipermnesia","Hipomnesia anterógrada","Hipomnesia retrógrada","Amnesia anterógrada","Amnesia retrógrada","Confabulación"],pens_curso:["Pensamiento fluido","Taquipsiquia","Bradipsiquia","Fuga de ideas","Bloqueo","Prolijo","Circunstancialidad","Tangencialidad","Disgregado","Perseveración"],pens_cont:["Sin alteraciones","Ideas delirantes","Ideas sobrevaloradas","Ideas obsesivas","Ideas fóbicas","Ideas de perjuicio","Ideas de grandeza","Ideas nihilistas","Ideas hipocondríacas","Ideas de culpa","Ideación suicida sin plan","Ideación suicida con plan","Ideación homicida"],percepcion:["Sin alteraciones","Alucinaciones auditivas","Alucinaciones visuales","Alucinaciones táctiles","Pseudoalucinaciones","Ilusiones","Despersonalización","Desrealización"],afecto:["Eutimia","Depresión","Tristeza","Euforia","Disforia","Ansiedad","Aplanamiento","Embotamiento","Labilidad","Irritabilidad","Anhedonia","Alexitimia"],conducta:["Sin alteraciones","Agitación psicomotriz","Inhibición psicomotriz","Estupor","Compulsiones","Impulsividad","Conducta suicida activa","Conducta heteroagresiva","Negativismo","Comportamiento desorganizado"],lenguaje:["Normal","Logorreico","Mutismo","Bradilalia","Taquilalia","Ecolalia","Neologismos","Ensalada de palabras","Disartria"],juicio:["Conservado","Parcialmente conservado","Alterado"],critica:["Buena insight","Insight parcial","Sin insight","Negación de enfermedad"],sueno:["Normal","Insomnio de conciliación","Insomnio de mantenimiento","Despertar precoz","Hipersomnia","Pesadillas"],apetito:["Normal","Hiporexia","Anorexia","Hiperfagia","Bulimia"]};
-
 var FARMACOS={"Antipsicóticos":["Risperidona","Olanzapina","Quetiapina","Aripiprazol","Clozapina","Haloperidol","Ziprasidona","Paliperidona"],"Antidepresivos":["Fluoxetina","Sertralina","Escitalopram","Paroxetina","Venlafaxina","Duloxetina","Mirtazapina","Amitriptilina","Clomipramina","Bupropión","Vortioxetina"],"Ansiolíticos/BZD":["Alprazolam","Clonazepam","Lorazepam","Diazepam","Bromazepam","Midazolam"],"Estabilizadores":["Litio","Valproato","Carbamazepina","Lamotrigina","Topiramato","Gabapentina"],"Hipnóticos":["Zolpidem","Zopiclona","Melatonina"],"Otros":["Biperideno","Prometazina","Propranolol","Naltrexona","Disulfiram"]};
-
 var PHQ9=["1. Poco interés o placer","2. Tristeza o sin esperanza","3. Problemas para dormir","4. Cansancio","5. Poco apetito o comer en exceso","6. Sentirse mal consigo mismo/a","7. Dificultad para concentrarse","8. Moverse muy despacio o agitación","9. Pensamientos de hacerse daño"];
 var GAD7=["1. Nervioso/a o al límite","2. Sin poder dejar de preocuparse","3. Preocupación excesiva","4. Dificultad para relajarse","5. Muy inquieto/a","6. Irritarse fácilmente","7. Miedo a que algo terrible pase"];
 var LKRT=["0–Nunca","1–Algunos días","2–Más de la mitad","3–Casi siempre"];
-
-// ── AUTOSAVE ───────────────────────────────────────────────────────────────
-function autoSave(){
-  clearTimeout(saveTimer);
-  saveTimer=setTimeout(function(){
-    try{
-      var data=collectData();
-      localStorage.setItem('hc_psiq',JSON.stringify(data));
-      showSaveIndicator();
-    }catch(e){console.log('Error guardando:',e);}
-  },1000);
-}
-
-function showSaveIndicator(){
-  var ind=document.getElementById('save-ind');
-  var st=document.getElementById('save-status');
-  ind.classList.add('show');
-  st.textContent='✓ Guardado';
-  setTimeout(function(){ind.classList.remove('show');},2000);
-}
-
-function collectData(){
-  return {
-    apellido:v('apellido'),nombre:v('nombre'),dni:v('dni'),fechaNac:v('fechaNac'),
-    edad:v('edad'),sexo:v('sexo'),ecivil:v('ecivil'),instruccion:v('instruccion'),
-    ocupacion:v('ocupacion'),obrasocial:v('obrasocial'),telefono:v('telefono'),
-    email:v('email'),domicilio:v('domicilio'),contacto:v('contacto'),
-    telEmergencia:v('tel-emergencia'),
-    medNombre:v('med-nombre'),medMatricula:v('med-matricula'),medEsp:v('med-esp'),
-    medCons:v('med-cons'),medFecha:v('med-fecha'),
-    motivo:v('motivo'),hea:v('hea'),antPsiq:v('ant-psiq'),antIntern:v('ant-intern'),
-    antMed:v('ant-med'),antMedicos:v('ant-medicos'),antQuir:v('ant-quir'),
-    alergias:v('alergias'),antFamDet:v('ant-fam-det'),sustancias:v('sustancias'),
-    aDesarrollo:v('a-desarrollo'),aFamilia:v('a-familia'),aEscolar:v('a-escolar'),
-    aLaboral:v('a-laboral'),aRelacional:v('a-relacional'),aTrauma:v('a-trauma'),
-    aEspiritual:v('a-espiritual'),
-    peso:v('peso'),talla:v('talla'),imc:v('imc'),ta:v('ta'),fc:v('fc'),
-    temp:v('temp'),exfisico:v('exfisico'),
-    chipsFamilia:getChips('chips-familia'),chipsHabitos:getChips('chips-habitos'),
-    cPac:v('c-pac'),cDni:v('c-dni'),cFecha:v('c-fecha'),cLugar:v('c-lugar'),
-    cRep:v('c-rep'),cVinculo:v('c-vinculo'),cObs:v('c-obs'),
-    clausulas:getClausulas(),firmado:firmado,
-    consultas:consultas,curConsulta:curConsulta
-  };
-}
-
+function getPacientes(){try{return JSON.parse(localStorage.getItem('hc_pacientes')||'[]');}catch(e){return[];}}
+function savePacientes(p){localStorage.setItem('hc_pacientes',JSON.stringify(p));}
+function nuevoPaciente(){var id='pac_'+Date.now();var pacs=getPacientes();pacs.push({id:id,apellido:'',nombre:'',dni:'',fechaCreacion:new Date().toISOString().split('T')[0],nConsultas:0});savePacientes(pacs);abrirPaciente(id);}
+function abrirPaciente(id){pacienteActual=id;limpiarFormulario();makeChips('chips-familia',["Depresión","T. bipolar","Esquizofrenia","Ansiedad","TOC","Suicidio","Adicciones","Demencia","Epilepsia","Otros"]);makeChips('chips-habitos',["Tabaquismo","Alcohol","Cannabis","Cocaína","Pasta base","Estimulantes","Opioides","BZD s/receta","Otras"]);makeClausulas();firmado=false;consultas=[];curConsulta=0;document.getElementById('med-fecha').value=new Date().toISOString().split('T')[0];cargarPaciente(id);document.getElementById('vista-indice').style.display='none';document.getElementById('vista-hc').style.display='block';document.getElementById('main-tabs').style.display='flex';document.getElementById('btn-volver').style.display='inline-block';document.getElementById('btn-pdf').style.display='inline-block';document.getElementById('btn-nueva-consulta').style.display='inline-block';document.getElementById('btn-nuevo-pac').style.display='none';showTab('datos',document.querySelector('.tab'));}
+function volverIndice(){pacienteActual=null;document.getElementById('vista-indice').style.display='block';document.getElementById('vista-hc').style.display='none';document.getElementById('main-tabs').style.display='none';document.getElementById('btn-volver').style.display='none';document.getElementById('btn-pdf').style.display='none';document.getElementById('btn-nueva-consulta').style.display='none';document.getElementById('btn-nuevo-pac').style.display='inline-block';document.getElementById('hdr-sub').textContent='Índice de pacientes';renderIndice();}
+function eliminarPaciente(id,e){e.stopPropagation();if(!confirm('¿Eliminar esta HC? No se puede deshacer.'))return;var pacs=getPacientes().filter(function(p){return p.id!==id;});savePacientes(pacs);localStorage.removeItem('hc_datos_'+id);renderIndice();}
+function renderIndice(){var pacs=getPacientes();var q=document.getElementById('buscador').value.toLowerCase();if(q)pacs=pacs.filter(function(p){return(p.apellido+' '+p.nombre+' '+p.dni).toLowerCase().indexOf(q)>=0;});var lista=document.getElementById('lista-pacientes');if(pacs.length===0){lista.innerHTML='<div class="empty-state"><div style="font-size:48px;margin-bottom:16px;">🧠</div><div style="font-size:16px;font-weight:700;margin-bottom:8px;">'+(q?'Sin resultados':'Sin pacientes aún')+'</div><div style="font-size:13px;">'+(q?'Probá con otro término':'Tocá "+ Paciente" para crear la primera HC')+'</div></div>';return;}pacs.sort(function(a,b){return(a.apellido||'').localeCompare(b.apellido||'');});lista.innerHTML=pacs.map(function(p){var nombre=(p.apellido&&p.nombre)?p.apellido+', '+p.nombre:(p.apellido||p.nombre||'Sin nombre');return'<div class="pac-card" onclick="abrirPaciente(\''+p.id+'\')">'+'<div><div class="pac-nombre">'+nombre+'</div>'+'<div class="pac-info">DNI: '+(p.dni||'—')+' · Creada: '+p.fechaCreacion+' · '+p.nConsultas+' consulta(s)</div></div>'+'<div style="display:flex;gap:8px;align-items:center;">'+'<span class="pac-badge">Ver HC →</span>'+'<button class="btn sm red outline" onclick="eliminarPaciente(\''+p.id+'\',event)">🗑</button>'+'</div></div>';}).join('');}
+function filtrarPacientes(){renderIndice();}
+function autoSave(){if(!pacienteActual)return;clearTimeout(saveTimer);saveTimer=setTimeout(function(){try{var data=collectData();localStorage.setItem('hc_datos_'+pacienteActual,JSON.stringify(data));var pacs=getPacientes();for(var i=0;i<pacs.length;i++){if(pacs[i].id===pacienteActual){pacs[i].apellido=data.apellido||'';pacs[i].nombre=data.nombre||'';pacs[i].dni=data.dni||'';pacs[i].nConsultas=consultas.length;break;}}savePacientes(pacs);showSaveInd();}catch(e){console.log(e);}},800);}
+function showSaveInd(){var ind=document.getElementById('save-ind');ind.classList.add('show');setTimeout(function(){ind.classList.remove('show');},2000);}
+function collectData(){return{apellido:v('apellido'),nombre:v('nombre'),dni:v('dni'),fechaNac:v('fechaNac'),edad:v('edad'),sexo:v('sexo'),ecivil:v('ecivil'),instruccion:v('instruccion'),ocupacion:v('ocupacion'),obrasocial:v('obrasocial'),telefono:v('telefono'),email:v('email'),domicilio:v('domicilio'),contacto:v('contacto'),telEmergencia:v('tel-emergencia'),medNombre:v('med-nombre'),medMatricula:v('med-matricula'),medEsp:v('med-esp'),medCons:v('med-cons'),medFecha:v('med-fecha'),motivo:v('motivo'),hea:v('hea'),antPsiq:v('ant-psiq'),antIntern:v('ant-intern'),antMed:v('ant-med'),antMedicos:v('ant-medicos'),antQuir:v('ant-quir'),alergias:v('alergias'),antFamDet:v('ant-fam-det'),sustancias:v('sustancias'),aDesarrollo:v('a-desarrollo'),aFamilia:v('a-familia'),aEscolar:v('a-escolar'),aLaboral:v('a-laboral'),aRelacional:v('a-relacional'),aTrauma:v('a-trauma'),aEspiritual:v('a-espiritual'),peso:v('peso'),talla:v('talla'),imc:v('imc'),ta:v('ta'),fc:v('fc'),temp:v('temp'),exfisico:v('exfisico'),chipsFamilia:getChips('chips-familia'),chipsHabitos:getChips('chips-habitos'),cPac:v('c-pac'),cDni:v('c-dni'),cFecha:v('c-fecha'),cLugar:v('c-lugar'),cRep:v('c-rep'),cVinculo:v('c-vinculo'),cObs:v('c-obs'),clausulas:getClausulas(),firmado:firmado,consultas:consultas,curConsulta:curConsulta};}
 function v(id){var el=document.getElementById(id);return el?el.value:'';}
-
-function getChips(id){
-  var chips=[];
-  document.querySelectorAll('#'+id+' .chip.on').forEach(function(c){chips.push(c.textContent);});
-  return chips;
-}
-
-function getClausulas(){
-  var cl=[];
-  for(var i=0;i<5;i++){
-    cl.push(document.getElementById('cl-'+i)?document.getElementById('cl-'+i).classList.contains('on'):false);
-  }
-  return cl;
-}
-
-function loadData(){
-  try{
-    var raw=localStorage.getItem('hc_psiq');
-    if(!raw)return;
-    var d=JSON.parse(raw);
-    var fields=['apellido','nombre','dni','fechaNac','edad','sexo','ecivil','instruccion','ocupacion','obrasocial','telefono','email','domicilio','contacto','medNombre','medMatricula','medEsp','medCons','medFecha','motivo','hea','ant-psiq','ant-intern','ant-med','ant-medicos','ant-quir','alergias','ant-fam-det','sustancias','a-desarrollo','a-familia','a-escolar','a-laboral','a-relacional','a-trauma','a-espiritual','peso','talla','imc','ta','fc','temp','exfisico','c-pac','c-dni','c-fecha','c-lugar','c-rep','c-vinculo','c-obs'];
-    var map={apellido:'apellido',nombre:'nombre',dni:'dni',fechaNac:'fechaNac',edad:'edad',sexo:'sexo',ecivil:'ecivil',instruccion:'instruccion',ocupacion:'ocupacion',obrasocial:'obrasocial',telefono:'telefono',email:'email',domicilio:'domicilio',contacto:'contacto','tel-emergencia':'telEmergencia','med-nombre':'medNombre','med-matricula':'medMatricula','med-esp':'medEsp','med-cons':'medCons','med-fecha':'medFecha',motivo:'motivo',hea:'hea','ant-psiq':'antPsiq','ant-intern':'antIntern','ant-med':'antMed','ant-medicos':'antMedicos','ant-quir':'antQuir',alergias:'alergias','ant-fam-det':'antFamDet',sustancias:'sustancias','a-desarrollo':'aDesarrollo','a-familia':'aFamilia','a-escolar':'aEscolar','a-laboral':'aLaboral','a-relacional':'aRelacional','a-trauma':'aTrauma','a-espiritual':'aEspiritual',peso:'peso',talla:'talla',imc:'imc',ta:'ta',fc:'fc',temp:'temp',exfisico:'exfisico','c-pac':'cPac','c-dni':'cDni','c-fecha':'cFecha','c-lugar':'cLugar','c-rep':'cRep','c-vinculo':'cVinculo','c-obs':'cObs'};
-    Object.keys(map).forEach(function(id){
-      var el=document.getElementById(id);
-      if(el&&d[map[id]]!==undefined)el.value=d[map[id]];
-    });
-    // chips
-    if(d.chipsFamilia) restoreChips('chips-familia',d.chipsFamilia);
-    if(d.chipsHabitos) restoreChips('chips-habitos',d.chipsHabitos);
-    // clausulas
-    if(d.clausulas) d.clausulas.forEach(function(on,i){
-      if(on){
-        var row=document.getElementById('cl-'+i);
-        var box=document.getElementById('clbox-'+i);
-        if(row){row.classList.add('on');box.classList.add('on');box.textContent='✓';}
-      }
-    });
-    // firmado
-    if(d.firmado) toggleFirmado();
-    // consultas
-    if(d.consultas&&d.consultas.length>0){
-      consultas=d.consultas;
-      curConsulta=d.curConsulta||0;
-      renderConsultas();
-    }
-    updHdr();
-    document.getElementById('save-status').textContent='✓ Datos cargados';
-    setTimeout(function(){document.getElementById('save-status').textContent='';},3000);
-  }catch(e){console.log('Error cargando:',e);}
-}
-
-function restoreChips(id,selected){
-  document.querySelectorAll('#'+id+' .chip').forEach(function(c){
-    if(selected.indexOf(c.textContent)>=0){c.classList.add('on');}
-  });
-}
-
-// ── TABS ───────────────────────────────────────────────────────────────────
-function showTab(id,btn){
-  ['datos','medico','antecedentes','anamnesis','fisico','consultas','consentimiento'].forEach(function(t){
-    document.getElementById('tab-'+t).style.display='none';
-  });
-  document.getElementById('tab-'+id).style.display='block';
-  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-}
-
-function updHdr(){
-  var a=document.getElementById('apellido').value;
-  var n=document.getElementById('nombre').value;
-  document.getElementById('hdr-pac').textContent=(a&&n)?a+', '+n:'Nuevo paciente';
-}
-
-function toggleFirmado(){
-  firmado=!firmado;
-  var row=document.getElementById('firmado-row');
-  var box=document.getElementById('firmado-box');
-  var txt=document.getElementById('firmado-txt');
-  row.classList.toggle('on',firmado);
-  box.classList.toggle('on',firmado);
-  box.textContent=firmado?'✓':'';
-  txt.textContent=firmado?'✅ Consentimiento FIRMADO':'Marcar como firmado';
-  txt.style.color=firmado?'#34d399':'#9aa5c4';
-  autoSave();
-}
-
-// ── CONSULTAS ──────────────────────────────────────────────────────────────
-function emptyConsulta(num){
-  return{num:num,fecha:new Date().toISOString().split('T')[0],prox:'',firma:'',motivo:'',evolucion:'',semio:{},diag:'',cie:'',plan:'',cambios:'',meds:[],phq9:new Array(9).fill(null),gad7:new Array(7).fill(null),cgi_s:'',cgi_i:'',notas:''};
-}
-
-function agregarConsulta(){
-  var c=emptyConsulta(consultas.length+1);
-  if(consultas.length>0){
-    var prev=consultas[consultas.length-1];
-    c.meds=prev.meds.filter(function(m){return m.activo;}).map(function(m){return Object.assign({},m);});
-  }
-  consultas.push(c);
-  curConsulta=consultas.length-1;
-  renderConsultas();
-  autoSave();
-}
-
-function nuevaConsulta(){
-  agregarConsulta();
-  showTab('consultas',document.querySelectorAll('.tab')[5]);
-}
-
-function renderConsultas(){
-  document.getElementById('cons-badge').textContent=consultas.length;
-  var btns=document.getElementById('consul-btns');
-  btns.innerHTML='';
-  consultas.forEach(function(c,i){
-    var b=document.createElement('button');
-    b.className='consul-btn'+(i===curConsulta?' active':'');
-    b.textContent='C'+c.num+' '+c.fecha;
-    b.onclick=function(){curConsulta=i;renderConsultas();};
-    btns.appendChild(b);
-  });
-  var ab=document.createElement('button');
-  ab.className='btn sm outline';ab.textContent='+ Agregar';ab.onclick=agregarConsulta;
-  btns.appendChild(ab);
-  renderConsultaContent();
-}
-
-function toggleSemio(key,item,btn){
-  var c=consultas[curConsulta];
-  if(!c.semio[key])c.semio[key]=[];
-  var idx=c.semio[key].indexOf(item);
-  if(idx>=0){c.semio[key].splice(idx,1);btn.classList.remove('on');}
-  else{c.semio[key].push(item);btn.classList.add('on');}
-  autoSave();
-}
-
-function renderConsultaContent(){
-  var c=consultas[curConsulta];
-  var semioLabels={conciencia:'Conciencia',orientacion:'Orientación',atencion:'Atención',memoria:'Memoria',pens_curso:'Pensamiento — Curso',pens_cont:'Pensamiento — Contenido',percepcion:'Percepción',afecto:'Afecto y Ánimo',conducta:'Conducta',lenguaje:'Lenguaje',juicio:'Juicio',critica:'Insight',sueno:'Sueño',apetito:'Apetito'};
-  var html='<div class="subtabs"><button class="subtab active" onclick="showSubTab(\'clinica\')">🩺 Clínica</button><button class="subtab" onclick="showSubTab(\'escalas\')">📊 Escalas</button></div>';
-  html+='<div id="sub-clinica">';
-  html+='<div class="card" style="background:#151929;"><div class="sec-hdr">📝 Consulta N° '+c.num+'</div>';
-  html+='<div class="grid2"><div class="field"><label>Fecha</label><input type="date" value="'+c.fecha+'" onchange="consultas[curConsulta].fecha=this.value;renderConsultas();autoSave()"></div>';
-  html+='<div class="field"><label>Próxima cita</label><input type="date" value="'+c.prox+'" onchange="consultas[curConsulta].prox=this.value;autoSave()"></div></div>';
-  html+='<div class="field"><label>Firma/Matrícula</label><input value="'+esc(c.firma)+'" onchange="consultas[curConsulta].firma=this.value;autoSave()"></div>';
-  html+='<div class="field"><label>Motivo</label><textarea rows="2" onchange="consultas[curConsulta].motivo=this.value;autoSave()">'+esc(c.motivo)+'</textarea></div>';
-  html+='<div class="field"><label>Evolución</label><textarea rows="2" onchange="consultas[curConsulta].evolucion=this.value;autoSave()">'+esc(c.evolucion)+'</textarea></div></div>';
-  html+='<div class="card"><div class="sec-hdr">🔬 Examen Psicopatológico</div>';
-  Object.keys(semioLabels).forEach(function(key){
-    html+='<div style="margin-bottom:16px"><label style="display:block;font-size:11px;font-weight:700;color:#4f8ef7;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">'+semioLabels[key]+'</label><div class="chips">';
-    SEMIO[key].forEach(function(item){
-      var sel=c.semio[key]&&c.semio[key].indexOf(item)>=0;
-      html+='<button class="chip'+(sel?' on':'')+'" onclick="toggleSemio(\''+key+'\',\''+item.replace(/'/g,"\\'")+ '\',this)">'+item+'</button>';
-    });
-    html+='</div></div>';
-  });
-  html+='</div>';
-  html+='<div class="card"><div class="sec-hdr">🎯 Diagnóstico y Plan</div>';
-  html+='<div class="field"><label>Impresión diagnóstica</label><textarea rows="3" onchange="consultas[curConsulta].diag=this.value;autoSave()">'+esc(c.diag)+'</textarea></div>';
-  html+='<div class="field"><label>CIE-10/CIE-11</label><input value="'+esc(c.cie)+'" placeholder="F32.1..." onchange="consultas[curConsulta].cie=this.value;autoSave()"></div>';
-  html+='<div class="field"><label>Plan terapéutico</label><textarea rows="3" onchange="consultas[curConsulta].plan=this.value;autoSave()">'+esc(c.plan)+'</textarea></div>';
-  html+='<div class="field"><label>Cambios en medicación</label><textarea rows="2" onchange="consultas[curConsulta].cambios=this.value;autoSave()">'+esc(c.cambios)+'</textarea></div></div>';
-  html+='<div class="card"><div class="sec-hdr">💊 Prescripción</div>';
-  if(c.meds.length===0)html+='<p style="color:#6b7a99;font-size:13px;margin-bottom:14px;">Sin medicamentos.</p>';
-  c.meds.forEach(function(m,mi){
-    var grupoOpts=Object.keys(FARMACOS).map(function(g){return'<option'+(m.grupo===g?' selected':'')+'>'+g+'</option>';}).join('');
-    var nomOpts=m.grupo?['<option value="">-</option>'].concat(FARMACOS[m.grupo].map(function(f){return'<option'+(m.nombre===f?' selected':'')+'>'+f+'</option>';})).join(''):'<option>-</option>';
-    html+='<div class="med-card'+(m.activo?' active':'')+'"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">';
-    html+='<span style="font-size:12px;font-weight:700;color:'+(m.activo?'#34d399':'#6b7a99')+'">'+(m.activo?'✅ Activo':'⛔ Suspendido')+'</span>';
-    html+='<div style="display:flex;gap:8px;">';
-    html+='<button class="btn sm '+(m.activo?'amber':'green')+' outline" onclick="toggleMed('+mi+')">'+(m.activo?'Suspender':'Reactivar')+'</button>';
-    html+='<button class="btn sm red outline" onclick="eliminarMed('+mi+')">Eliminar</button></div></div>';
-    html+='<div class="grid2"><div class="field"><label>Grupo</label><select onchange="consultas[curConsulta].meds['+mi+'].grupo=this.value;consultas[curConsulta].meds['+mi+'].nombre=\'\';renderConsultaContent();autoSave()"><option value="">-</option>'+grupoOpts+'</select></div>';
-    html+='<div class="field"><label>Fármaco</label><select onchange="consultas[curConsulta].meds['+mi+'].nombre=this.value;autoSave()"><option value="">-</option>'+nomOpts+'</select></div>';
-    html+='<div class="field"><label>Dosis</label><input value="'+esc(m.dosis)+'" placeholder="50 mg" onchange="consultas[curConsulta].meds['+mi+'].dosis=this.value;autoSave()"></div>';
-    html+='<div class="field"><label>Vía</label><select onchange="consultas[curConsulta].meds['+mi+'].via=this.value;autoSave()">';
-    ['Oral','IM','EV','Sublingual','Transdérmica'].forEach(function(vv){html+='<option'+(m.via===vv?' selected':'')+'>'+vv+'</option>';});
-    html+='</select></div></div>';
-    html+='<div class="field"><label>Frecuencia</label><select onchange="consultas[curConsulta].meds['+mi+'].frecuencia=this.value;autoSave()">';
-    ['1 vez/día','2 veces/día','3 veces/día','Cada 8 hs','Cada 12 hs','Según necesidad','Nocturna'].forEach(function(ff){html+='<option'+(m.frecuencia===ff?' selected':'')+'>'+ff+'</option>';});
-    html+='</select></div>';
-    html+='<div class="field"><label>Indicación</label><input value="'+esc(m.indicacion)+'" onchange="consultas[curConsulta].meds['+mi+'].indicacion=this.value;autoSave()"></div></div>';
-  });
-  html+='<button class="btn outline" onclick="agregarMed()" style="margin-top:8px;">+ Agregar medicamento</button></div>';
-  // esquema activo
-  var activos=c.meds.filter(function(m){return m.activo;});
-  if(activos.length>0){
-    html+='<div class="card" style="background:#0d3327;border-color:#34d39933;"><div class="sec-hdr">📋 Esquema Actual</div>';
-    html+='<table class="table"><thead><tr><th>Fármaco</th><th>Dosis</th><th>Vía</th><th>Frecuencia</th><th>Indicación</th></tr></thead><tbody>';
-    activos.forEach(function(m){html+='<tr><td style="color:#34d399;font-weight:600;">'+m.nombre+'</td><td>'+m.dosis+'</td><td>'+m.via+'</td><td>'+m.frecuencia+'</td><td style="color:#9aa5c4;">'+m.indicacion+'</td></tr>';});
-    html+='</tbody></table></div>';
-  }
-  html+='</div>';
-  // escalas
-  html+='<div id="sub-escalas" style="display:none">';
-  html+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">';
-  html+='<button class="subtab active" id="et-phq9" onclick="showEscala(\'phq9\')">PHQ-9</button>';
-  html+='<button class="subtab" id="et-gad7" onclick="showEscala(\'gad7\')">GAD-7</button>';
-  html+='<button class="subtab" id="et-cgi" onclick="showEscala(\'cgi\')">CGI</button></div>';
-  // PHQ9
-  html+='<div id="esc-phq9" class="card"><div class="sec-hdr">😔 PHQ-9 — Depresión</div>';
-  html+='<div class="alert green">0–4 Mínima · 5–9 Leve · 10–14 Moderada · 15+ Grave</div>';
-  PHQ9.forEach(function(item,i){
-    html+='<div style="margin-bottom:10px;padding:8px 12px;background:#181c27;border-radius:8px;"><label style="display:block;font-size:12px;color:#9aa5c4;margin-bottom:6px;">'+item+'</label><div style="display:flex;flex-wrap:wrap;gap:6px;">';
-    LKRT.forEach(function(op,v){
-      var sel=c.phq9[i]===v;
-      html+='<button class="chip'+(sel?' on':'')+'" onclick="setPHQ9('+i+','+v+',this)">'+op+'</button>';
-    });
-    html+='</div></div>';
-  });
-  var phqScore=c.phq9.reduce(function(s,v){return s+(v||0);},0);
-  var phqColor=phqScore>=15?'#f87171':phqScore>=5?'#fbbf24':'#34d399';
-  html+='<div class="score-bar"><div class="nums"><span style="color:'+phqColor+'">'+phqScore+'/27</span><span style="font-size:11px;color:#6b7a99;">'+(phqScore>=15?'Grave':phqScore>=5?'Moderado':'Leve')+'</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+Math.round(phqScore/27*100)+'%;background:'+phqColor+';"></div></div></div></div>';
-  // GAD7
-  html+='<div id="esc-gad7" class="card" style="display:none"><div class="sec-hdr">😰 GAD-7 — Ansiedad</div>';
-  html+='<div class="alert green">0–4 Mínima · 5–9 Leve · 10–14 Moderada · 15+ Grave</div>';
-  GAD7.forEach(function(item,i){
-    html+='<div style="margin-bottom:10px;padding:8px 12px;background:#181c27;border-radius:8px;"><label style="display:block;font-size:12px;color:#9aa5c4;margin-bottom:6px;">'+item+'</label><div style="display:flex;flex-wrap:wrap;gap:6px;">';
-    LKRT.forEach(function(op,v){
-      var sel=c.gad7[i]===v;
-      html+='<button class="chip'+(sel?' on':'')+'" onclick="setGAD7('+i+','+v+',this)">'+op+'</button>';
-    });
-    html+='</div></div>';
-  });
-  var gadScore=c.gad7.reduce(function(s,v){return s+(v||0);},0);
-  var gadColor=gadScore>=15?'#f87171':gadScore>=5?'#fbbf24':'#34d399';
-  html+='<div class="score-bar"><div class="nums"><span style="color:'+gadColor+'">'+gadScore+'/21</span><span style="font-size:11px;color:#6b7a99;">'+(gadScore>=15?'Grave':gadScore>=5?'Moderado':'Leve')+'</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+Math.round(gadScore/21*100)+'%;background:'+gadColor+';"></div></div></div></div>';
-  // CGI
-  html+='<div id="esc-cgi" class="card" style="display:none"><div class="sec-hdr">🎯 CGI — Impresión Clínica Global</div>';
-  html+='<div class="field"><label>Severidad</label><select onchange="consultas[curConsulta].cgi_s=this.value;autoSave()">';
-  ['','1–Normal','2–Muy leve','3–Levemente enfermo','4–Moderado','5–Marcadamente enfermo','6–Grave','7–Entre los más graves'].forEach(function(o){html+='<option'+(c.cgi_s===o?' selected':'')+'>'+o+'</option>';});
-  html+='</select></div><div class="field"><label>Mejoría global</label><select onchange="consultas[curConsulta].cgi_i=this.value;autoSave()">';
-  ['','1–Muy mejorado','2–Mejorado','3–Mín. mejorado','4–Sin cambios','5–Mín. empeorado','6–Empeorado','7–Muy empeorado'].forEach(function(o){html+='<option'+(c.cgi_i===o?' selected':'')+'>'+o+'</option>';});
-  html+='</select></div></div>';
-  // resumen escalas
-  html+='<div class="card"><div class="sec-hdr">📊 Resumen de Escalas</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">';
-  [{l:'PHQ-9',s:phqScore,m:27,c:[5,15]},{l:'GAD-7',s:gadScore,m:21,c:[5,10]}].forEach(function(e){
-    var col=e.s>=e.c[1]?'#f87171':e.s>=e.c[0]?'#fbbf24':'#34d399';
-    html+='<div class="sum-box" style="border:1px solid '+col+'33;"><div class="lbl">'+e.l+'</div><div class="val" style="color:'+col+';">'+e.s+'</div><div class="max">/'+e.m+'</div></div>';
-  });
-  html+='<div class="sum-box"><div class="lbl">CGI-S</div><div style="font-size:13px;font-weight:700;color:#4f8ef7;margin-top:4px;">'+(c.cgi_s||'—')+'</div></div></div>';
-  html+='<div class="field"><label>Observaciones</label><textarea rows="2" onchange="consultas[curConsulta].notas=this.value;autoSave()">'+esc(c.notas)+'</textarea></div></div>';
-  html+='</div>';
-  document.getElementById('consul-content').innerHTML=html;
-}
-
-function showSubTab(id){
-  document.getElementById('sub-clinica').style.display=id==='clinica'?'block':'none';
-  document.getElementById('sub-escalas').style.display=id==='escalas'?'block':'none';
-  document.querySelectorAll('.subtab').forEach(function(b){b.classList.remove('active');});
-  event.target.classList.add('active');
-}
-
-function showEscala(id){
-  ['phq9','gad7','cgi'].forEach(function(e){
-    var el=document.getElementById('esc-'+e);
-    var btn=document.getElementById('et-'+e);
-    if(el)el.style.display=e===id?'block':'none';
-    if(btn)btn.classList.toggle('active',e===id);
-  });
-}
-
-function agregarMed(){
-  consultas[curConsulta].meds.push({grupo:'',nombre:'',dosis:'',via:'Oral',frecuencia:'1 vez/día',indicacion:'',activo:true});
-  renderConsultaContent();autoSave();
-}
-
-function eliminarMed(mi){
-  consultas[curConsulta].meds.splice(mi,1);
-  renderConsultaContent();autoSave();
-}
-
-function toggleMed(mi){
-  consultas[curConsulta].meds[mi].activo=!consultas[curConsulta].meds[mi].activo;
-  renderConsultaContent();autoSave();
-}
-
-function setPHQ9(i,v,btn){
-  consultas[curConsulta].phq9[i]=v;
-  btn.closest('.card').querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
-  // re-render to update score
-  renderConsultaContent();
-  showSubTab('escalas');autoSave();
-}
-
-function setGAD7(i,v,btn){
-  consultas[curConsulta].gad7[i]=v;
-  renderConsultaContent();
-  showSubTab('escalas');autoSave();
-}
-
-function esc(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):'';} 
-
-// ── INIT ───────────────────────────────────────────────────────────────────
-function makeChips(containerId,items){
-  var c=document.getElementById(containerId);
-  items.forEach(function(item){
-    var b=document.createElement('button');
-    b.className='chip';b.textContent=item;
-    b.onclick=function(){b.classList.toggle('on');autoSave();};
-    c.appendChild(b);
-  });
-}
-
-function makeClausulas(){
-  var cl=["Acepto recibir tratamiento psiquiátrico incluyendo evaluación, diagnóstico y tratamiento farmacológico y/o psicoterapéutico.","He recibido información comprensible sobre diagnóstico, opciones, beneficios y posibles efectos adversos.","Comprendo que la información está protegida por secreto médico (Ley 17.132 y Ley 26.529).","Autorizo comunicación a familiares directos o profesionales intervinientes en mi tratamiento.","Puedo revocar este consentimiento en cualquier momento."];
-  var cont=document.getElementById('clausulas');
-  cl.forEach(function(txt,i){
-    var d=document.createElement('div');
-    d.className='check-row';d.id='cl-'+i;
-    d.innerHTML='<div class="check-box" id="clbox-'+i+'"></div><span style="font-size:13px;color:#9aa5c4;line-height:1.6;">'+txt+'</span>';
-    d.onclick=function(){
-      d.classList.toggle('on');
-      var box=document.getElementById('clbox-'+i);
-      box.classList.toggle('on');
-      box.textContent=box.classList.contains('on')?'✓':'';
-      autoSave();
-    };
-    cont.appendChild(d);
-  });
-}
-
-window.onload=function(){
-  makeChips('chips-familia',["Depresión","T. bipolar","Esquizofrenia","Ansiedad","TOC","Suicidio","Adicciones","Demencia","Epilepsia","Otros"]);
-  makeChips('chips-habitos',["Tabaquismo","Alcohol","Cannabis","Cocaína","Pasta base","Estimulantes","Opioides","BZD s/receta","Otras"]);
-  makeClausulas();
-  var hoy=new Date().toISOString().split('T')[0];
-  document.getElementById('med-fecha').value=hoy;
-  // intentar cargar datos guardados
-  var raw=localStorage.getItem('hc_psiq');
-  if(raw){
-    loadData();
-  } else {
-    agregarConsulta();
-  }
-};
+function getChips(id){var r=[];document.querySelectorAll('#'+id+' .chip.on').forEach(function(c){r.push(c.textContent);});return r;}
+function getClausulas(){var r=[];for(var i=0;i<5;i++){r.push(document.getElementById('cl-'+i)?document.getElementById('cl-'+i).classList.contains('on'):false);}return r;}
+function cargarPaciente(id){try{var raw=localStorage.getItem('hc_datos_'+id);if(!raw){agregarConsulta();return;}var d=JSON.parse(raw);var map={apellido:'apellido',nombre:'nombre',dni:'dni',fechaNac:'fechaNac',edad:'edad',sexo:'sexo',ecivil:'ecivil',instruccion:'instruccion',ocupacion:'ocupacion',obrasocial:'obrasocial',telefono:'telefono',email:'email',domicilio:'domicilio',contacto:'contacto','tel-emergencia':'telEmergencia','med-nombre':'medNombre','med-matricula':'medMatricula','med-esp':'medEsp','med-cons':'medCons','med-fecha':'medFecha',motivo:'motivo',hea:'hea','ant-psiq':'antPsiq','ant-intern':'antIntern','ant-med':'antMed','ant-medicos':'antMedicos','ant-quir':'antQuir',alergias:'alergias','ant-fam-det':'antFamDet',sustancias:'sustancias','a-desarrollo':'aDesarrollo','a-familia':'aFamilia','a-escolar':'aEscolar','a-laboral':'aLaboral','a-relacional':'aRelacional','a-trauma':'aTrauma','a-espiritual':'aEspiritual',peso:'peso',talla:'talla',imc:'imc',ta:'ta',fc:'fc',temp:'temp',exfisico:'exfisico','c-pac':'cPac','c-dni':'cDni','c-fecha':'cFecha','c-lugar':'cLugar','c-rep':'cRep','c-vinculo':'cVinculo','c-obs':'cObs'};Object.keys(map).forEach(function(id_){var el=document.getElementById(id_);if(el&&d[map[id_]]!==undefined)el.value=d[map[id_]];});if(d.chipsFamilia)restoreChips('chips-familia',d.chipsFamilia);if(d.chipsHabitos)restoreChips('chips-habitos',d.chipsHabitos);if(d.clausulas)d.clausulas.forEach(function(on,i){if(on){var row=document.getElementById('cl-'+i);var box=document.getElementById('clbox-'+i);if(row){row.classList.add('on');box.classList.add('on');box.textContent='✓';}}});if(d.firmado){firmado=true;var row=document.getElementById('firmado-row');var box=document.getElementById('firmado-box');var txt=document.getElementById('firmado-txt');if(row)row.classList.add('on');if(box){box.classList.add('on');box.textContent='✓';}if(txt){txt.textContent='✅ Consentimiento FIRMADO';txt.style.color='#34d399';}}if(d.consultas&&d.consultas.length>0){consultas=d.consultas;curConsulta=d.curConsulta||0;renderConsultas();}else{agregarConsulta();}updHdr();}catch(e){console.log(e);agregarConsulta();}}
+function restoreChips(id,selected){document.querySelectorAll('#'+id+' .chip').forEach(function(c){if(selected.indexOf(c.textContent)>=0)c.classList.add('on');});}
+function limpiarFormulario(){['apellido','nombre','dni','fechaNac','edad','ocupacion','obrasocial','telefono','email','domicilio','contacto','tel-emergencia','med-nombre','med-matricula','med-cons','motivo','hea','ant-psiq','ant-intern','ant-med','ant-medicos','ant-quir','alergias','ant-fam-det','sustancias','a-desarrollo','a-familia','a-escolar','a-laboral','a-relacional','a-trauma','a-espiritual','peso','talla','imc','ta','fc','temp','exfisico','c-pac','c-dni','c-lugar','c-rep','c-vinculo','c-obs'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});['sexo','ecivil','instruccion'].forEach(function(id){var el=document.getElementById(id);if(el)el.selectedIndex=0;});var me=document.getElementById('med-esp');if(me)me.value='Psiquiatría';var cf=document.getElementById('chips-familia');if(cf)cf.innerHTML='';var ch=document.getElementById('chips-habitos');if(ch)ch.innerHTML='';var cl=document.getElementById('clausulas');if(cl)cl.innerHTML='';firmado=false;var fb=document.getElementById('firmado-box');if(fb){fb.classList.remove('on');fb.textContent='';}var fr=document.getElementById('firmado-row');if(fr)fr.classList.remove('on');var ft=document.getElementById('firmado-txt');if(ft){ft.textContent='Marcar como firmado';ft.style.color='#9aa5c4';}}
+function showTab(id,btn){['datos','medico','antecedentes','anamnesis','fisico','consultas','consentimiento'].forEach(function(t){document.getElementById('tab-'+t).style.display='none';});document.getElementById('tab-'+id).style.display='block';document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});if(btn)btn.classList.add('active');}
+function updHdr(){var a=document.getElementById('apellido').value;var n=document.getElementById('nombre').value;document.getElementById('hdr-sub').textContent=(a&&n)?a+', '+n:(a||n||'Nuevo paciente');}
+function toggleFirmado(){firmado=!firmado;var row=document.getElementById('firmado-row');var box=document.getElementById('firmado-box');var txt=document.getElementById('firmado-txt');row.classList.toggle('on',firmado);box.classList.toggle('on',firmado);box.textContent=firmado?'✓':'';txt.textContent=firmado?'✅ Consentimiento FIRMADO':'Marcar como firmado';txt.style.color=firmado?'#34d399':'#9aa5c4';autoSave();}
+function emptyConsulta(num){return{num:num,fecha:new Date().toISOString().split('T')[0],prox:'',firma:'',motivo:'',evolucion:'',semio:{},diag:'',cie:'',plan:'',cambios:'',meds:[],phq9:new Array(9).fill(null),gad7:new Array(7).fill(null),cgi_s:'',cgi_i:'',notas:''};}
+function agregarConsulta(){var c=emptyConsulta(consultas.length+1);if(consultas.length>0){var prev=consultas[consultas.length-1];c.meds=prev.meds.filter(function(m){return m.activo;}).map(function(m){return Object.assign({},m);});}consultas.push(c);curConsulta=consultas.length-1;renderConsultas();autoSave();}
+function nuevaConsulta(){agregarConsulta();showTab('consultas',document.querySelectorAll('.tab')[5]);}
+function renderConsultas(){document.getElementById('cons-badge').textContent=consultas.length;var btns=document.getElementById('consul-btns');btns.innerHTML='';consultas.forEach(function(c,i){var b=document.createElement('button');b.className='consul-btn'+(i===curConsulta?' active':'');b.textContent='C'+c.num+' '+c.fecha;b.onclick=function(){curConsulta=i;renderConsultas();};btns.appendChild(b);});var ab=document.createElement('button');ab.className='btn sm outline';ab.textContent='+ Agregar';ab.onclick=agregarConsulta;btns.appendChild(ab);renderConsultaContent();}
+function toggleSemio(key,item,btn){var c=consultas[curConsulta];if(!c.semio[key])c.semio[key]=[];var idx=c.semio[key].indexOf(item);if(idx>=0){c.semio[key].splice(idx,1);btn.classList.remove('on');}else{c.semio[key].push(item);btn.classList.add('on');}autoSave();}
+function renderConsultaContent(){var c=consultas[curConsulta];var sl={conciencia:'Conciencia',orientacion:'Orientación',atencion:'Atención',memoria:'Memoria',pens_curso:'Pensamiento — Curso',pens_cont:'Pensamiento — Contenido',percepcion:'Percepción',afecto:'Afecto y Ánimo',conducta:'Conducta',lenguaje:'Lenguaje',juicio:'Juicio',critica:'Insight',sueno:'Sueño',apetito:'Apetito'};var html='<div class="subtabs"><button class="subtab active" onclick="showSubTab(\'clinica\',event)">🩺 Clínica</button><button class="subtab" onclick="showSubTab(\'escalas\',event)">📊 Escalas</button></div>';html+='<div id="sub-clinica"><div class="card" style="background:#151929;"><div class="sec-hdr">📝 Consulta N° '+c.num+'</div><div class="grid2"><div class="field"><label>Fecha</label><input type="date" value="'+c.fecha+'" onchange="consultas[curConsulta].fecha=this.value;renderConsultas();autoSave()"></div><div class="field"><label>Próxima cita</label><input type="date" value="'+c.prox+'" onchange="consultas[curConsulta].prox=this.value;autoSave()"></div></div><div class="field"><label>Firma/Matrícula</label><input value="'+esc(c.firma)+'" onchange="consultas[curConsulta].firma=this.value;autoSave()"></div><div class="field"><label>Motivo</label><textarea rows="2" onchange="consultas[curConsulta].motivo=this.value;autoSave()">'+esc(c.motivo)+'</textarea></div><div class="field"><label>Evolución</label><textarea rows="2" onchange="consultas[curConsulta].evolucion=this.value;autoSave()">'+esc(c.evolucion)+'</textarea></div></div>';html+='<div class="card"><div class="sec-hdr">🔬 Examen Psicopatológico</div>';Object.keys(sl).forEach(function(key){html+='<div style="margin-bottom:16px"><label style="display:block;font-size:11px;font-weight:700;color:#4f8ef7;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">'+sl[key]+'</label><div class="chips">';SEMIO[key].forEach(function(item){var sel=c.semio[key]&&c.semio[key].indexOf(item)>=0;html+='<button class="chip'+(sel?' on':'')+'" onclick="toggleSemio(\''+key+'\',\''+item.replace(/'/g,"\\'")+ '\',this)">'+item+'</button>';});html+='</div></div>';});html+='</div>';html+='<div class="card"><div class="sec-hdr">🎯 Diagnóstico y Plan</div><div class="field"><label>Impresión diagnóstica</label><textarea rows="3" onchange="consultas[curConsulta].diag=this.value;autoSave()">'+esc(c.diag)+'</textarea></div><div class="field"><label>CIE-10/CIE-11</label><input value="'+esc(c.cie)+'" placeholder="F32.1..." onchange="consultas[curConsulta].cie=this.value;autoSave()"></div><div class="field"><label>Plan terapéutico</label><textarea rows="3" onchange="consultas[curConsulta].plan=this.value;autoSave()">'+esc(c.plan)+'</textarea></div><div class="field"><label>Cambios en medicación</label><textarea rows="2" onchange="consultas[curConsulta].cambios=this.value;autoSave()">'+esc(c.cambios)+'</textarea></div></div>';html+='<div class="card"><div class="sec-hdr">💊 Prescripción</div>';if(c.meds.length===0)html+='<p style="color:#6b7a99;font-size:13px;margin-bottom:14px;">Sin medicamentos.</p>';c.meds.forEach(function(m,mi){var go=Object.keys(FARMACOS).map(function(g){return'<option'+(m.grupo===g?' selected':'')+'>'+g+'</option>';}).join('');var no=m.grupo?['<option value="">-</option>'].concat(FARMACOS[m.grupo].map(function(f){return'<option'+(m.nombre===f?' selected':'')+'>'+f+'</option>';})).join(''):'<option>-</option>';html+='<div class="med-card'+(m.activo?' active':'')+'"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:'+(m.activo?'#34d399':'#6b7a99')+'">'+(m.activo?'✅ Activo':'⛔ Suspendido')+'</span><div style="display:flex;gap:8px;"><button class="btn sm '+(m.activo?'amber':'green')+' outline" onclick="toggleMed('+mi+')">'+(m.activo?'Suspender':'Reactivar')+'</button><button class="btn sm red outline" onclick="eliminarMed('+mi+')">Eliminar</button></div></div><div class="grid2"><div class="field"><label>Grupo</label><select onchange="consultas[curConsulta].meds['+mi+'].grupo=this.value;consultas[curConsulta].meds['+mi+'].nombre=\'\';renderConsultaContent();autoSave()"><option value="">-</option>'+go+'</select></div><div class="field"><label>Fármaco</label><select onchange="consultas[curConsulta].meds['+mi+'].nombre=this.value;autoSave()"><option value="">-</option>'+no+'</select></div><div class="field"><label>Dosis</label><input value="'+esc(m.dosis)+'" placeholder="50 mg" onchange="consultas[curConsulta].meds['+mi+'].dosis=this.value;autoSave()"></div><div class="field"><label>Vía</label><select onchange="consultas[curConsulta].meds['+mi+'].via=this.value;autoSave()">';['Oral','IM','EV','Sublingual','Transdérmica'].forEach(function(vv){html+='<option'+(m.via===vv?' selected':'')+'>'+vv+'</option>';});html+='</select></div></div><div class="field"><label>Frecuencia</label><select onchange="consultas[curConsulta].meds['+mi+'].frecuencia=this.value;autoSave()">';['1 vez/día','2 veces/día','3 veces/día','Cada 8 hs','Cada 12 hs','Según necesidad','Nocturna'].forEach(function(ff){html+='<option'+(m.frecuencia===ff?' selected':'')+'>'+ff+'</option>';});html+='</select></div><div class="field"><label>Indicación</label><input value="'+esc(m.indicacion)+'" onchange="consultas[curConsulta].meds['+mi+'].indicacion=this.value;autoSave()"></div></div>';});html+='<button class="btn outline" onclick="agregarMed()" style="margin-top:8px;">+ Agregar medicamento</button></div>';var act=c.meds.filter(function(m){return m.activo;});if(act.length>0){html+='<div class="card" style="background:#0d3327;border-color:#34d39933;"><div class="sec-hdr">📋 Esquema Actual</div><table class="table"><thead><tr><th>Fármaco</th><th>Dosis</th><th>Vía</th><th>Frecuencia</th><th>Indicación</th></tr></thead><tbody>';act.forEach(function(m){html+='<tr><td style="color:#34d399;font-weight:600;">'+esc(m.nombre)+'</td><td>'+esc(m.dosis)+'</td><td>'+m.via+'</td><td>'+m.frecuencia+'</td><td style="color:#9aa5c4;">'+esc(m.indicacion)+'</td></tr>';});html+='</tbody></table></div>';}html+='</div>';html+='<div id="sub-escalas" style="display:none"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;"><button class="subtab active" id="et-phq9" onclick="showEscala(\'phq9\')">PHQ-9</button><button class="subtab" id="et-gad7" onclick="showEscala(\'gad7\')">GAD-7</button><button class="subtab" id="et-cgi" onclick="showEscala(\'cgi\')">CGI</button></div>';html+='<div id="esc-phq9" class="card"><div class="sec-hdr">😔 PHQ-9</div><div class="alert green">0–4 Mínima · 5–9 Leve · 10–14 Moderada · 15+ Grave</div>';PHQ9.forEach(function(item,i){html+='<div style="margin-bottom:10px;padding:8px 12px;background:#181c27;border-radius:8px;"><label style="display:block;font-size:12px;color:#9aa5c4;margin-bottom:6px;">'+item+'</label><div style="display:flex;flex-wrap:wrap;gap:6px;">';LKRT.forEach(function(op,vv){html+='<button class="chip'+(c.phq9[i]===vv?' on':'')+'" onclick="setPHQ9('+i+','+vv+')">'+op+'</button>';});html+='</div></div>';});var ps=c.phq9.reduce(function(s,vv){return s+(vv||0);},0);var pc=ps>=15?'#f87171':ps>=5?'#fbbf24':'#34d399';html+='<div class="score-bar"><div class="nums"><span style="color:'+pc+'">'+ps+'/27</span><span style="font-size:11px;color:#6b7a99;">'+(ps>=15?'Grave':ps>=5?'Moderado':'Leve')+'</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+Math.round(ps/27*100)+'%;background:'+pc+';"></div></div></div></div>';html+='<div id="esc-gad7" class="card" style="display:none"><div class="sec-hdr">😰 GAD-7</div><div class="alert green">0–4 Mínima · 5–9 Leve · 10–14 Moderada · 15+ Grave</div>';GAD7.forEach(function(item,i){html+='<div style="margin-bottom:10px;padding:8px 12px;background:#181c27;border-radius:8px;"><label style="display:block;font-size:12px;color:#9aa5c4;margin-bottom:6px;">'+item+'</label><div style="display:flex;flex-wrap:wrap;gap:6px;">';LKRT.forEach(function(op,vv){html+='<button class="chip'+(c.gad7[i]===vv?' on':'')+'" onclick="setGAD7('+i+','+vv+')">'+op+'</button>';});html+='</div></div>';});var gs=c.gad7.reduce(function(s,vv){return s+(vv||0);},0);var gc=gs>=15?'#f87171':gs>=5?'#fbbf24':'#34d399';html+='<div class="score-bar"><div class="nums"><span style="color:'+gc+'">'+gs+'/21</span><span style="font-size:11px;color:#6b7a99;">'+(gs>=15?'Grave':gs>=5?'Moderado':'Leve')+'</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+Math.round(gs/21*100)+'%;background:'+gc+';"></div></div></div></div>';html+='<div id="esc-cgi" class="card" style="display:none"><div class="sec-hdr">🎯 CGI</div><div class="field"><label>Severidad</label><select onchange="consultas[curConsulta].cgi_s=this.value;autoSave()">';['','1–Normal','2–Muy leve','3–Levemente enfermo','4–Moderado','5–Marcadamente enfermo','6–Grave','7–Entre los más graves'].forEach(function(o){html+='<option'+(c.cgi_s===o?' selected':'')+'>'+o+'</option>';});html+='</select></div><div class="field"><label>Mejoría</label><select onchange="consultas[curConsulta].cgi_i=this.value;autoSave()">';['','1–Muy mejorado','2–Mejorado','3–Mín. mejorado','4–Sin cambios','5–Mín. empeorado','6–Empeorado','7–Muy empeorado'].forEach(function(o){html+='<option'+(c.cgi_i===o?' selected':'')+'>'+o+'</option>';});html+='</select></div></div>';html+='<div class="card"><div class="sec-hdr">📊 Resumen</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">';[{l:'PHQ-9',s:ps,m:27,cuts:[5,15]},{l:'GAD-7',s:gs,m:21,cuts:[5,10]}].forEach(function(e){var col=e.s>=e.cuts[1]?'#f87171':e.s>=e.cuts[0]?'#fbbf24':'#34d399';html+='<div class="sum-box" style="border:1px solid '+col+'33;"><div style="font-size:11px;color:#6b7a99;margin-bottom:4px;">'+e.l+'</div><div style="font-size:24px;font-weight:800;color:'+col+';">'+e.s+'</div><div style="font-size:10px;color:#6b7a99;">/'+e.m+'</div></div>';});html+='<div class="sum-box"><div style="font-size:11px;color:#6b7a99;margin-bottom:4px;">CGI-S</div><div style="font-size:13px;font-weight:700;color:#4f8ef7;margin-top:4px;">'+(c.cgi_s||'—')+'</div></div></div><div class="field"><label>Observaciones</label><textarea rows="2" onchange="consultas[curConsulta].notas=this.value;autoSave()">'+esc(c.notas)+'</textarea></div></div></div>';document.getElementById('consul-content').innerHTML=html;}
+function showSubTab(id,e){document.getElementById('sub-clinica').style.display=id==='clinica'?'block':'none';document.getElementById('sub-escalas').style.display=id==='escalas'?'block':'none';document.querySelectorAll('.subtab').forEach(function(b){b.classList.remove('active');});if(e&&e.target)e.target.classList.add('active');}
+function showEscala(id){['phq9','gad7','cgi'].forEach(function(e){var el=document.getElementById('esc-'+e);var btn=document.getElementById('et-'+e);if(el)el.style.display=e===id?'block':'none';if(btn)btn.classList.toggle('active',e===id);});}
+function agregarMed(){consultas[curConsulta].meds.push({grupo:'',nombre:'',dosis:'',via:'Oral',frecuencia:'1 vez/día',indicacion:'',activo:true});renderConsultaContent();autoSave();}
+function eliminarMed(mi){consultas[curConsulta].meds.splice(mi,1);renderConsultaContent();autoSave();}
+function toggleMed(mi){consultas[curConsulta].meds[mi].activo=!consultas[curConsulta].meds[mi].activo;renderConsultaContent();autoSave();}
+function setPHQ9(i,vv){consultas[curConsulta].phq9[i]=vv;renderConsultaContent();showSubTab('escalas',null);autoSave();}
+function setGAD7(i,vv){consultas[curConsulta].gad7[i]=vv;renderConsultaContent();showSubTab('escalas',null);autoSave();}
+function esc(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):'';}
+function makeChips(containerId,items){var c=document.getElementById(containerId);if(!c)return;c.innerHTML='';items.forEach(function(item){var b=document.createElement('button');b.className='chip';b.textContent=item;b.onclick=function(){b.classList.toggle('on');autoSave();};c.appendChild(b);});}
+function makeClausulas(){var cl=["Acepto recibir tratamiento psiquiátrico incluyendo evaluación, diagnóstico y tratamiento farmacológico y/o psicoterapéutico.","He recibido información comprensible sobre diagnóstico, opciones, beneficios y posibles efectos adversos.","Comprendo que la información está protegida por secreto médico (Ley 17.132 y Ley 26.529).","Autorizo comunicación a familiares directos o profesionales intervinientes en mi tratamiento.","Puedo revocar este consentimiento en cualquier momento."];var cont=document.getElementById('clausulas');if(!cont)return;cont.innerHTML='';cl.forEach(function(txt,i){var d=document.createElement('div');d.className='check-row';d.id='cl-'+i;d.innerHTML='<div class="check-box" id="clbox-'+i+'"></div><span style="font-size:13px;color:#9aa5c4;line-height:1.6;">'+txt+'</span>';d.onclick=function(){d.classList.toggle('on');var box=document.getElementById('clbox-'+i);box.classList.toggle('on');box.textContent=box.classList.contains('on')?'✓':'';autoSave();};cont.appendChild(d);});}
+window.onload=function(){renderIndice();};
 </script>
 </body>
-</html>
+  </html>
